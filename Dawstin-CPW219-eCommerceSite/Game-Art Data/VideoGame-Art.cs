@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dawstin_CPW219_eCommerceSite.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dawstin_CPW219_eCommerceSite.Game_Art_Data
 {
@@ -10,6 +11,6 @@ namespace Dawstin_CPW219_eCommerceSite.Game_Art_Data
 
         }
 
-        public DbSet<VideoGame_Art> VideoGame_Arts { get; set; }
+        public DbSet<Game_Art> Game_Arts { get; set; }
     }
 }
