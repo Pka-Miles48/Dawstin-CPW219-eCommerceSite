@@ -1,6 +1,7 @@
 ﻿using Dawstin_CPW219_eCommerceSite.Game_Art_Data;
 using Dawstin_CPW219_eCommerceSite.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dawstin_CPW219_eCommerceSite.Controllers
 {
@@ -11,6 +12,15 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
         public Game_ArtController(VideoGame_Art context)
         {
             _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            // List<Game_Art> arts = _context.Game_Arts.ToList();
+            List<Game_Art> arts = await (from game_art in _context.Game_Arts
+                                        select game_art).ToListAsync();
+
+            return View(arts);
         }
 
         [HttpGet]
