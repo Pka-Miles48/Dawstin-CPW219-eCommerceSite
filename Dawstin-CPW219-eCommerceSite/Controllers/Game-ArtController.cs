@@ -45,5 +45,17 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
 
             return View(game_Art);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            Game_Art? game_artToEdit = await _context.Game_Arts.FindAsync(id);
+
+            if (game_artToEdit == null)
+            {
+                return NotFound();
+            }
+
+            return View(game_artToEdit);
+        }
     }
 }
