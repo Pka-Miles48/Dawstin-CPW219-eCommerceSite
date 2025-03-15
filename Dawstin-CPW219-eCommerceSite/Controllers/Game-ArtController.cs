@@ -72,5 +72,34 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
 
             return View(game_artModel);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Game_Art? game_artToDelete = await _context.Game_Arts.FindAsync(id);
+
+            if (game_artToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return View(game_artToDelete);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Game_Art game_artToDelete = await _context.Game_Arts.FindAsync(id);
+
+            if (game_artToDelete != null)
+            {
+                _context.Game_Arts.Remove(game_artToDelete);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = game_artToDelete.Title + " was deleted successfully";
+                return RedirectToAction("Index");
+            }
+
+            TempData["Message"] = "This game was already deleted";
+            return RedirectToAction("Index");
+        }
     }
 }
