@@ -66,6 +66,7 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
                 _context.Game_Arts.Update(game_artModel);
                 await _context.SaveChangesAsync();
 
+                TempData["Message"] = $"{game_artModel.Title} was updated successfully!";
                 return RedirectToAction("Index");
             }
 
