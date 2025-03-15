@@ -18,7 +18,7 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
         {
             // List<Game_Art> arts = _context.Game_Arts.ToList();
             List<Game_Art> arts = await (from game_art in _context.Game_Arts
-                                        select game_art).ToListAsync();
+                                         select game_art).ToListAsync();
 
             return View(arts);
         }
@@ -44,6 +44,33 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
             }
 
             return View(game_Art);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            Game_Art? game_artToEdit = await _context.Game_Arts.FindAsync(id);
+
+            if (game_artToEdit == null)
+            {
+                return NotFound();
+            }
+
+            return View(game_artToEdit);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Game_Art game_artModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Game_Arts.Update(game_artModel);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = $"{game_artModel.Title} was updated successfully!";
+                return RedirectToAction("Index");
+            }
+
+            return View(game_artModel);
         }
     }
 }
