@@ -101,5 +101,17 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
             TempData["Message"] = "This game was already deleted";
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            Game_Art? game_artDetails = await _context.Game_Arts.FindAsync(id);
+
+            if (game_artDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(game_artDetails);
+        }
     }
 }
