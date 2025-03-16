@@ -3,6 +3,7 @@ using Dawstin_CPW219_eCommerceSite.Game_Art_Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dawstin_CPW219_eCommerceSite.Migrations
 {
     [DbContext(typeof(VideoGame_Art))]
-    partial class VideoGame_ArtModelSnapshot : ModelSnapshot
+    [Migration("20250316082815_OptionalMemberFields")]
+    partial class OptionalMemberFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

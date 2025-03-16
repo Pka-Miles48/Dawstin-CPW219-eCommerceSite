@@ -12,5 +12,7 @@ namespace Dawstin_CPW219_eCommerceSite.Game_Art_Data
         }
 
         public DbSet<Game_Art> Game_Arts { get; set; }
+
+        public DbSet<Member> Members { get; set; }
     }
 }
