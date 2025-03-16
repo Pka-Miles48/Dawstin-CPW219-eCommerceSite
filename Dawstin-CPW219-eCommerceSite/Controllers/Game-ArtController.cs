@@ -67,7 +67,7 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["Message"] = $"{game_artModel.Title} was updated successfully!";
-                return RedirectToAction("Index");
+                return RedirectToAction("Register");
             }
 
             return View(game_artModel);
@@ -95,11 +95,11 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
                 _context.Game_Arts.Remove(game_artToDelete);
                 await _context.SaveChangesAsync();
                 TempData["Message"] = game_artToDelete.Title + " was deleted successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction("Register");
             }
 
             TempData["Message"] = "This game was already deleted";
-            return RedirectToAction("Index");
+            return RedirectToAction("Register");
         }
 
         public async Task<IActionResult> Details(int id)
