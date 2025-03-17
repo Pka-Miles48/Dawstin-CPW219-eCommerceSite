@@ -19,15 +19,20 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
             const int NumGamesAndPaintingsToDisplayPerPage = 3;
             const int PageOffset = 1; // Need a page offset to use current page and figure out, num games to skip
 
-            int currPage = id ?? 1; // Set currPage to id if it has a value, otherwise use 1        
-          
+            int currPage = id ?? 1; // Set currPage to id if it has a value, otherwise use 1
+
+            int totalNumOfProducts = await _context.Game_Arts.CountAsync();
+            double maxNumPages = Math.Ceiling((double)totalNumOfProducts / NumGamesAndPaintingsToDisplayPerPage);
+            int lastPage = Convert.ToInt32(maxNumPages); // Rounding pages up, to next whole page number
+            
             List<Game_Art> arts = await (from game_art in _context.Game_Arts
                                          select game_art)
                                          .Skip(NumGamesAndPaintingsToDisplayPerPage * (currPage - PageOffset))
                                          .Take(NumGamesAndPaintingsToDisplayPerPage)
                                          .ToListAsync();
 
-            return View(arts);
+            Game_ArtCatalogViewModel catalogViewModel = new(arts, lastPage, currPage);
+            return View(catalogViewModel);
         }
 
         [HttpGet]
