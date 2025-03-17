@@ -14,11 +14,18 @@ namespace Dawstin_CPW219_eCommerceSite.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            // List<Game_Art> arts = _context.Game_Arts.ToList();
+            const int NumGamesAndPaintingsToDisplayPerPage = 3;
+            const int PageOffset = 1; // Need a page offset to use current page and figure out, num games to skip
+
+            int currPage = id ?? 1; // Set currPage to id if it has a value, otherwise use 1        
+          
             List<Game_Art> arts = await (from game_art in _context.Game_Arts
-                                         select game_art).ToListAsync();
+                                         select game_art)
+                                         .Skip(NumGamesAndPaintingsToDisplayPerPage * (currPage - PageOffset))
+                                         .Take(NumGamesAndPaintingsToDisplayPerPage)
+                                         .ToListAsync();
 
             return View(arts);
         }
