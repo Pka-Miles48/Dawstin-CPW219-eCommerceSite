@@ -27,4 +27,17 @@ namespace Dawstin_CPW219_eCommerceSite.Models
 
         // Todo: Add rating
     }
+
+    /// <summary>
+    /// A single video game or painting that has been added to the users
+    /// shopping cart cookie
+    /// </summary>
+    public class CartGameAndArtViewModel
+    {
+        public int Game_ArtId { get; set; }
+
+        public string Title { get; set; }
+
+        public double Price { get; set; }
+    }
 }
