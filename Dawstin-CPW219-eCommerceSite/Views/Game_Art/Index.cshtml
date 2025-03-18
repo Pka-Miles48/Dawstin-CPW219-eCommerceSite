@@ -51,6 +51,7 @@
                     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Game_ArtId">Edit</a>
                     <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Game_ArtId">Details</a>
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Game_ArtId">Delete</a>
+                    <a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.Game_ArtId">Add to Cart</a>
                 </td>
             </tr>
         }
